@@ -8,12 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		4D6A84A2209ABC42003C2150 /* RefreshableKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D6A84A0209ABC42003C2150 /* RefreshableKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4D6A84AE209ABEF5003C2150 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A84A8209ABEF5003C2150 /* LICENSE */; };
+		4D6A84AF209ABEF5003C2150 /* RefreshableKit.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A84A9209ABEF5003C2150 /* RefreshableKit.podspec */; };
+		4D6A84B0209ABEF5003C2150 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A84AA209ABEF5003C2150 /* README.md */; };
+		4D6A84B7209ABF24003C2150 /* RefreshableKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D6A84B6209ABF24003C2150 /* RefreshableKit.xcassets */; };
+		4D6A84BF209AEE97003C2150 /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84BE209AEE97003C2150 /* PullToRefresh.swift */; };
+		4D6A84D120A00293003C2150 /* UIScrollView+PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84CD20A00293003C2150 /* UIScrollView+PullToRefresh.swift */; };
+		4D6A84D220A00293003C2150 /* InfinityScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84CE20A00293003C2150 /* InfinityScrolling.swift */; };
+		4D6A84D320A00293003C2150 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84CF20A00293003C2150 /* Utils.swift */; };
+		4D6A84D420A00293003C2150 /* UIScrollView+InfinityScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84D020A00293003C2150 /* UIScrollView+InfinityScrolling.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D6A849D209ABC42003C2150 /* RefreshableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RefreshableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6A84A0209ABC42003C2150 /* RefreshableKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RefreshableKit.h; sourceTree = "<group>"; };
 		4D6A84A1209ABC42003C2150 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D6A84A8209ABEF5003C2150 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		4D6A84A9209ABEF5003C2150 /* RefreshableKit.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RefreshableKit.podspec; sourceTree = SOURCE_ROOT; };
+		4D6A84AA209ABEF5003C2150 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4D6A84B6209ABF24003C2150 /* RefreshableKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = RefreshableKit.xcassets; sourceTree = "<group>"; };
+		4D6A84BE209AEE97003C2150 /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
+		4D6A84CD20A00293003C2150 /* UIScrollView+PullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+PullToRefresh.swift"; sourceTree = "<group>"; };
+		4D6A84CE20A00293003C2150 /* InfinityScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinityScrolling.swift; sourceTree = "<group>"; };
+		4D6A84CF20A00293003C2150 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4D6A84D020A00293003C2150 /* UIScrollView+InfinityScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+InfinityScrolling.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,11 +64,36 @@
 		4D6A849F209ABC42003C2150 /* RefreshableKit */ = {
 			isa = PBXGroup;
 			children = (
+				4D6A84B4209ABF08003C2150 /* Assets */,
+				4D6A84B5209ABF08003C2150 /* Classes */,
+				4D6A84A8209ABEF5003C2150 /* LICENSE */,
+				4D6A84AA209ABEF5003C2150 /* README.md */,
+				4D6A84A9209ABEF5003C2150 /* RefreshableKit.podspec */,
 				4D6A84A0209ABC42003C2150 /* RefreshableKit.h */,
 				4D6A84A1209ABC42003C2150 /* Info.plist */,
 			);
 			path = RefreshableKit;
 			sourceTree = "<group>";
+		};
+		4D6A84B4209ABF08003C2150 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A84B6209ABF24003C2150 /* RefreshableKit.xcassets */,
+			);
+			path = Assets;
+			sourceTree = SOURCE_ROOT;
+		};
+		4D6A84B5209ABF08003C2150 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A84CE20A00293003C2150 /* InfinityScrolling.swift */,
+				4D6A84BE209AEE97003C2150 /* PullToRefresh.swift */,
+				4D6A84D020A00293003C2150 /* UIScrollView+InfinityScrolling.swift */,
+				4D6A84CD20A00293003C2150 /* UIScrollView+PullToRefresh.swift */,
+				4D6A84CF20A00293003C2150 /* Utils.swift */,
+			);
+			path = Classes;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -95,6 +138,7 @@
 				TargetAttributes = {
 					4D6A849C209ABC42003C2150 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -120,6 +164,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A84B0209ABEF5003C2150 /* README.md in Resources */,
+				4D6A84AE209ABEF5003C2150 /* LICENSE in Resources */,
+				4D6A84B7209ABF24003C2150 /* RefreshableKit.xcassets in Resources */,
+				4D6A84AF209ABEF5003C2150 /* RefreshableKit.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D6A84D120A00293003C2150 /* UIScrollView+PullToRefresh.swift in Sources */,
+				4D6A84BF209AEE97003C2150 /* PullToRefresh.swift in Sources */,
+				4D6A84D420A00293003C2150 /* UIScrollView+InfinityScrolling.swift in Sources */,
+				4D6A84D220A00293003C2150 /* InfinityScrolling.swift in Sources */,
+				4D6A84D320A00293003C2150 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +312,7 @@
 		4D6A84A6209ABC42003C2150 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -275,6 +329,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.toprating.RefreshableKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -283,6 +338,7 @@
 		4D6A84A7209ABC42003C2150 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
