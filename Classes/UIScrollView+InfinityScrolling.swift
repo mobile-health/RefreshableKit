@@ -27,9 +27,7 @@ public extension UIScrollView {
         refrehser.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         refrehser.frame = containComponent.bounds
         containComponent.addSubview(refrehser)
-        
-        setScrollingEnabled(false)
-        
+                
         configAssociatedObject(object: object)
     }
     

@@ -232,23 +232,23 @@ extension InfinityScrollingContainer {
     }
     
     fileprivate func hide() {
-        state = .idle
-        var inset = attachedScrollView.contentInset
-        inset.bottom = inset.bottom - frame.height
-        attachedScrollView.contentInset = inset
+//        state = .idle
+//        var inset = attachedScrollView.contentInset
+//        inset.bottom = inset.bottom - frame.height
+//        attachedScrollView.contentInset = inset
 
         isHidden = true
     }
     
     fileprivate func show() {
-        var contentInset = attachedScrollView.contentInset
-        contentInset.bottom = contentInset.bottom + frame.height
-        attachedScrollView.contentInset = contentInset
-        
-        frame = CGRect(x: 0,
-                       y: attachedScrollView.contentSize.height,
-                       width: frame.width,
-                       height: frame.height)
+//        var contentInset = attachedScrollView.contentInset
+//        contentInset.bottom = contentInset.bottom + frame.height
+//        attachedScrollView.contentInset = contentInset
+//        
+//        frame = CGRect(x: 0,
+//                       y: attachedScrollView.contentSize.height,
+//                       width: frame.width,
+//                       height: frame.height)
         
         isHidden = false
     }
