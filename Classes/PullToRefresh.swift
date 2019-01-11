@@ -41,7 +41,6 @@ open class DefaultPullToRefreshView: UIView, PullToRefreshable {
         retVal.autoStartAnimating = true
         retVal.hidesWhenStopped = false
         retVal.color = UIColor(red: 48 / 255, green: 161 / 255, blue: 249 / 255, alpha: 1)
-//        retVal.startAnimating()
         return retVal
     }()
     

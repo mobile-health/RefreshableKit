@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SWActivityIndicatorView
 import UIKit
 
 enum InfinityScrollingState {
@@ -22,6 +23,49 @@ enum InfinityScrollingState {
 }
 
 open class DefaultRefreshFooter: UIView, InfinityScrollable {
+    open var footerHeight = Constants.defaultFooterHeight
+    
+    open lazy var spinner: SWActivityIndicatorView = {
+        let retVal = SWActivityIndicatorView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 25, height: 25)))
+        retVal.backgroundColor = UIColor.clear
+        retVal.lineWidth = 2
+        retVal.autoStartAnimating = true
+        retVal.hidesWhenStopped = false
+        retVal.color = UIColor(red: 48 / 255, green: 161 / 255, blue: 249 / 255, alpha: 1)
+        return retVal
+    }()
+    
+    open static func footer() -> DefaultRefreshFooter {
+        return DefaultRefreshFooter()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(spinner)
+        isHidden = true
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        spinner.center = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open func didBeginRefreshing() {
+        isHidden = false
+        spinner.startAnimating()
+    }
+    
+    open func didEndRefreshing() {
+        isHidden = true
+        spinner.stopAnimating()
+    }
+}
+
+open class ActivityIndicatorRefreshFooter: UIView, InfinityScrollable {
     open var footerHeight = Constants.defaultFooterHeight
     open let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
