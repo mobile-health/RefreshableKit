@@ -6,6 +6,7 @@
 //  Copyright © 2018 toprating. All rights reserved.
 //
 
+import SWActivityIndicatorView
 import UIKit
 
 public enum PullToRefreshState: Int {
@@ -28,9 +29,57 @@ public protocol PullToRefreshable: class {
     func didCompletedHideAnimation()
 }
 
-
 open class DefaultPullToRefreshView: UIView, PullToRefreshable {
+    open class func header() -> DefaultPullToRefreshView {
+        return DefaultPullToRefreshView()
+    }
     
+    open lazy var spinner: SWActivityIndicatorView = {
+        let retVal = SWActivityIndicatorView(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 25, height: 25)))
+        retVal.backgroundColor = UIColor.clear
+        retVal.lineWidth = 2
+        retVal.autoStartAnimating = true
+        retVal.hidesWhenStopped = false
+        retVal.color = UIColor(red: 48 / 255, green: 161 / 255, blue: 249 / 255, alpha: 1)
+//        retVal.startAnimating()
+        return retVal
+    }()
+    
+    open var animationDuration = 0.5
+    public var headerHeight = Constants.defaultHeaderHeight
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(spinner)
+        isHidden = true
+    }
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        spinner.center = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    open func didBeginHideAnimation() {
+        spinner.stopAnimating()
+    }
+    
+    open func didCompletedHideAnimation() {
+        isHidden = true
+    }
+    
+    open func didBeginRefresh() {
+        isHidden = false
+        spinner.startAnimating()
+    }
+}
+
+open class ActivityIndicatorPullToRefreshView: UIView, PullToRefreshable {
     open class func header() -> DefaultPullToRefreshView {
         return DefaultPullToRefreshView()
     }
@@ -52,7 +101,7 @@ open class DefaultPullToRefreshView: UIView, PullToRefreshable {
         spinner.center = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -67,13 +116,12 @@ open class DefaultPullToRefreshView: UIView, PullToRefreshable {
     open func didBeginRefresh() {
         isHidden = false
         spinner.startAnimating()
-    }    
+    }
 }
 
 open class PullToRefreshContainer: UIView {
-    
-    var refreshAction: (()->())?
-    var attachedScrollView:UIScrollView!
+    var refreshAction: (() -> ())?
+    var attachedScrollView: UIScrollView!
     var originalInset: UIEdgeInsets?
     var durationOfEndRefreshing = 0.4
     weak var delegate: PullToRefreshable?
@@ -95,14 +143,14 @@ open class PullToRefreshContainer: UIView {
             case .idle:
                 guard oldValue == .refreshing else { return }
                 
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async {
                     self.animateHide()
-                })
+                }
                 
             case .refreshing:
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async {
                     self.animateRefresh()
-                })
+                }
             default:
                 break
             }
@@ -110,12 +158,13 @@ open class PullToRefreshContainer: UIView {
     }
     
     // MARK: - Init -
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -132,16 +181,15 @@ open class PullToRefreshContainer: UIView {
         addObservers()
     }
     
-    deinit{
+    deinit {
         removeObservers()
     }
     
-    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == Constants.keyPathOffSet {
             handleScrollOffSetChange(change)
         }
     }
-    
     
     func beginRefreshing() {
         if window != nil {
@@ -160,7 +208,6 @@ open class PullToRefreshContainer: UIView {
 }
 
 extension PullToRefreshContainer {
-    
     fileprivate func commonInit() {
         backgroundColor = UIColor.clear
         autoresizingMask = .flexibleWidth
@@ -180,11 +227,11 @@ extension PullToRefreshContainer {
         
         if state == .refreshing {
             if window == nil { return }
-
+            
             let offset = attachedScrollView.contentOffset
             let inset = originalInset!
             var oldInset = attachedScrollView.contentInset
-
+            
             var insetTop = -offset.y > inset.top ? -offset.y : inset.top
             insetTop = insetTop > insetHeight + inset.top ? insetHeight + inset.top : insetTop
             oldInset.top = insetTop
@@ -197,16 +244,16 @@ extension PullToRefreshContainer {
         originalInset = attachedScrollView.contentInset
         let offsetY = attachedScrollView.contentOffset.y
         let pullingOffSetY = -originalInset!.top - fireHeight
-
+        
         // When pull to refresh offsetY <= -originalInset!.top
         if offsetY >= -originalInset!.top {
             return
         }
-
+        
         if attachedScrollView.isDragging {
-            if state == .idle && offsetY < pullingOffSetY {
+            if state == .idle, offsetY < pullingOffSetY {
                 state = .pulling
-            } else if state == .pulling && offsetY >= pullingOffSetY {
+            } else if state == .pulling, offsetY >= pullingOffSetY {
                 state = .idle
             }
             

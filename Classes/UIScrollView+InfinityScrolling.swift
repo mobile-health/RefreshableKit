@@ -9,13 +9,11 @@
 import Foundation
 import UIKit
 
-
 public extension UIScrollView {
-    
-    public func addInfiniteScrolling(with refrehser:UIView & InfinityScrollable = DefaultRefreshFooter.footer(),
-                                    container object: AnyObject,
-                                    action:@escaping ()->()){
-        removeAllOldContainer()
+    public func addInfiniteScrolling(with refrehser: UIView & InfinityScrollable = DefaultRefreshFooter.footer(),
+                                     container object: AnyObject,
+                                     action: @escaping () -> ()) {
+        self.removeAllOldContainer()
         
         let containerSize = CGSize(width: frame.size.width, height: refrehser.footerHeight)
         let containComponent = InfinityScrollingContainer(frame: CGRect(origin: .zero, size: containerSize))
@@ -27,7 +25,7 @@ public extension UIScrollView {
         refrehser.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         refrehser.frame = containComponent.bounds
         containComponent.addSubview(refrehser)
-                
+        
         configAssociatedObject(object: object)
     }
     

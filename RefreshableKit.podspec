@@ -19,5 +19,7 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 
 	s.frameworks = 'UIKit', 'Foundation'
-
+    
+    # Other source code.
+    s.dependency 'SWActivityIndicatorView'
 end

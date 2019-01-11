@@ -15,19 +15,16 @@ enum InfinityScrollingState {
 }
 
 @objc public protocol InfinityScrollable: class {
-    
     var footerHeight: CGFloat { get set }
     
     func didEndRefreshing()
     func didBeginRefreshing()
 }
 
-
 open class DefaultRefreshFooter: UIView, InfinityScrollable {
-    
     open var footerHeight = Constants.defaultFooterHeight
     open let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
+    
     open static func footer() -> DefaultRefreshFooter {
         return DefaultRefreshFooter()
     }
@@ -56,19 +53,18 @@ open class DefaultRefreshFooter: UIView, InfinityScrollable {
         isHidden = true
         spinner.stopAnimating()
     }
-    
 }
 
 class InfinityScrollingContainer: UIView {
-    
     var isEnabled = true {
         didSet {
             if isEnabled != oldValue {
-                !isEnabled ? self.hide() : self.show()
+                !isEnabled ? hide() : show()
             }
         }
     }
-    var refreshAction: (()->())?
+    
+    var refreshAction: (() -> ())?
     var attachedScrollView: UIScrollView!
     weak var delegate: InfinityScrollable?
     fileprivate var _state: InfinityScrollingState = .idle
@@ -77,15 +73,15 @@ class InfinityScrollingContainer: UIView {
             return _state
         }
         set {
-            guard newValue != _state else{
+            guard newValue != _state else {
                 return
             }
-            _state =  newValue
+            _state = newValue
             if newValue == .refreshing {
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async {
                     self.delegate?.didBeginRefreshing()
                     self.refreshAction?()
-                })
+                }
             }
         }
     }
@@ -107,7 +103,7 @@ class InfinityScrollingContainer: UIView {
         guard newSuperview != nil else {
             if !isHidden {
                 var inset = attachedScrollView.contentInset
-                inset.bottom = inset.bottom - self.frame.height
+                inset.bottom = inset.bottom - frame.height
                 attachedScrollView.contentInset = inset
             }
             return
@@ -122,7 +118,7 @@ class InfinityScrollingContainer: UIView {
         
         if !isHidden {
             var contentInset = attachedScrollView.contentInset
-            contentInset.bottom = contentInset.bottom + self.frame.height
+            contentInset.bottom = contentInset.bottom + frame.height
             attachedScrollView.contentInset = contentInset
         }
         
@@ -140,7 +136,7 @@ class InfinityScrollingContainer: UIView {
         }
         
         if isHidden { return }
-
+        
         if keyPath == Constants.keyPathPanState {
             handlePanStateChange(change)
         }
@@ -164,18 +160,17 @@ class InfinityScrollingContainer: UIView {
         state = .idle
         delegate?.didEndRefreshing()
     }
-
-    deinit{
+    
+    deinit {
         removeObservers()
     }
 }
 
 extension InfinityScrollingContainer {
-    
     fileprivate func addObservers() {
-        attachedScrollView?.addObserver(self, forKeyPath: Constants.keyPathOffSet, options: [.old,.new], context: nil)
-        attachedScrollView?.addObserver(self, forKeyPath: Constants.keyPathContentSize, options:[.old,.new] , context: nil)
-        attachedScrollView?.panGestureRecognizer.addObserver(self, forKeyPath: Constants.keyPathPanState, options:[.old, .new], context: nil)
+        attachedScrollView?.addObserver(self, forKeyPath: Constants.keyPathOffSet, options: [.old, .new], context: nil)
+        attachedScrollView?.addObserver(self, forKeyPath: Constants.keyPathContentSize, options: [.old, .new], context: nil)
+        attachedScrollView?.panGestureRecognizer.addObserver(self, forKeyPath: Constants.keyPathPanState, options: [.old, .new], context: nil)
     }
     
     fileprivate func removeObservers() {
@@ -184,8 +179,8 @@ extension InfinityScrollingContainer {
         attachedScrollView?.panGestureRecognizer.removeObserver(self, forKeyPath: Constants.keyPathPanState, context: nil)
     }
     
-    fileprivate func handleScrollOffSetChange(_ change: [NSKeyValueChangeKey : Any]?) {
-        if state != .idle && frame.origin.y != 0 {
+    fileprivate func handleScrollOffSetChange(_ change: [NSKeyValueChangeKey: Any]?) {
+        if state != .idle, frame.origin.y != 0 {
             return
         }
         
@@ -195,7 +190,7 @@ extension InfinityScrollingContainer {
         
         if insetTop + contentHeight > scrollViewHeight {
             let offSetY = attachedScrollView.contentOffset.y
-            if offSetY > self.frame.origin.y - scrollViewHeight + attachedScrollView.contentInset.bottom {
+            if offSetY > frame.origin.y - scrollViewHeight + attachedScrollView.contentInset.bottom {
                 let oldOffset = (change?[NSKeyValueChangeKey.oldKey] as AnyObject).cgPointValue
                 let newOffset = (change?[NSKeyValueChangeKey.newKey] as AnyObject).cgPointValue
                 if newOffset?.y <= oldOffset?.y {
@@ -207,7 +202,7 @@ extension InfinityScrollingContainer {
         }
     }
     
-    fileprivate func handlePanStateChange(_ change: [NSKeyValueChangeKey : Any]?) {
+    fileprivate func handlePanStateChange(_ change: [NSKeyValueChangeKey: Any]?) {
         guard state == .idle else { return }
         
         if attachedScrollView.panGestureRecognizer.state == .ended {
@@ -227,7 +222,7 @@ extension InfinityScrollingContainer {
         }
     }
     
-    fileprivate func handleContentSizeChange(_ change: [NSKeyValueChangeKey : Any]?) {
+    fileprivate func handleContentSizeChange(_ change: [NSKeyValueChangeKey: Any]?) {
         frame = CGRect(x: 0, y: attachedScrollView.contentSize.height, width: frame.size.width, height: frame.size.height)
     }
     
@@ -236,7 +231,7 @@ extension InfinityScrollingContainer {
 //        var inset = attachedScrollView.contentInset
 //        inset.bottom = inset.bottom - frame.height
 //        attachedScrollView.contentInset = inset
-
+        
         isHidden = true
     }
     
@@ -244,7 +239,7 @@ extension InfinityScrollingContainer {
 //        var contentInset = attachedScrollView.contentInset
 //        contentInset.bottom = contentInset.bottom + frame.height
 //        attachedScrollView.contentInset = contentInset
-//        
+//
 //        frame = CGRect(x: 0,
 //                       y: attachedScrollView.contentSize.height,
 //                       width: frame.width,
@@ -253,4 +248,3 @@ extension InfinityScrollingContainer {
         isHidden = false
     }
 }
-

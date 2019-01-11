@@ -9,16 +9,14 @@
 import Foundation
 
 public extension UIScrollView {
-    
-    
     public func addPullToRefresh(with refresher: UIView & PullToRefreshable = DefaultPullToRefreshView.header(),
-                                container object: AnyObject,
-                                action: @escaping ()->()) {
+                                 container object: AnyObject,
+                                 action: @escaping () -> ()) {
         removeAllOldContainer()
         
         // Create Header Container
         let refreshHeight = refresher.headerHeight
-
+        
         let containerFrame = CGRect(x: 0, y: -refreshHeight, width: frame.width, height: refreshHeight)
         let container = PullToRefreshContainer(frame: containerFrame)
         container.tag = Constants.headerTag
@@ -44,10 +42,9 @@ public extension UIScrollView {
         let header = viewWithTag(Constants.headerTag) as? PullToRefreshContainer
         header?.endRefreshing()
     }
-
+    
     private func removeAllOldContainer() {
         let oldContain = viewWithTag(Constants.headerTag)
         oldContain?.removeFromSuperview()
     }
-    
 }
