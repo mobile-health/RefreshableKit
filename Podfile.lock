@@ -1,0 +1,16 @@
+PODS:
+  - SWActivityIndicatorView (2.0.0)
+
+DEPENDENCIES:
+  - SWActivityIndicatorView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SWActivityIndicatorView
+
+SPEC CHECKSUMS:
+  SWActivityIndicatorView: b3d43933021d3e3ba08a814b43751e3f58031e87
+
+PODFILE CHECKSUM: 1708dfcfa7446174d4152d906d2c4be8e0d611c5
+
+COCOAPODS: 1.5.2

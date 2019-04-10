@@ -35,7 +35,7 @@ struct Constants {
 }
 
 public extension UIScrollView {
-    public func invalidateRefreshControls() {
+    func invalidateRefreshControls() {
         let tags = [Constants.headerTag, Constants.footerTag]
         tags.forEach { tag in
             let oldContain = self.viewWithTag(tag)

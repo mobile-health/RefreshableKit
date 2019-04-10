@@ -35,7 +35,7 @@ open class DefaultRefreshFooter: UIView, InfinityScrollable {
         return retVal
     }()
     
-    open static func footer() -> DefaultRefreshFooter {
+    public static func footer() -> DefaultRefreshFooter {
         return DefaultRefreshFooter()
     }
     
@@ -67,9 +67,9 @@ open class DefaultRefreshFooter: UIView, InfinityScrollable {
 
 open class ActivityIndicatorRefreshFooter: UIView, InfinityScrollable {
     open var footerHeight = Constants.defaultFooterHeight
-    open let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    public let spinner = UIActivityIndicatorView(style: .gray)
     
-    open static func footer() -> DefaultRefreshFooter {
+    public static func footer() -> DefaultRefreshFooter {
         return DefaultRefreshFooter()
     }
     

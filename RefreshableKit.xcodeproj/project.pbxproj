@@ -17,6 +17,7 @@
 		4D6A84D220A00293003C2150 /* InfinityScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84CE20A00293003C2150 /* InfinityScrolling.swift */; };
 		4D6A84D320A00293003C2150 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84CF20A00293003C2150 /* Utils.swift */; };
 		4D6A84D420A00293003C2150 /* UIScrollView+InfinityScrolling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A84D020A00293003C2150 /* UIScrollView+InfinityScrolling.swift */; };
+		EE569154DCAB15AA9B037A64 /* Pods_RefreshableKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D500B9005841D65AC0B57A44 /* Pods_RefreshableKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		4D6A84CE20A00293003C2150 /* InfinityScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinityScrolling.swift; sourceTree = "<group>"; };
 		4D6A84CF20A00293003C2150 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4D6A84D020A00293003C2150 /* UIScrollView+InfinityScrolling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+InfinityScrolling.swift"; sourceTree = "<group>"; };
+		769870E693A72D84EBAD991F /* Pods-RefreshableKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RefreshableKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-RefreshableKit/Pods-RefreshableKit.release.xcconfig"; sourceTree = "<group>"; };
+		D500B9005841D65AC0B57A44 /* Pods_RefreshableKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RefreshableKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95C4F8C595D660768786764 /* Pods-RefreshableKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RefreshableKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RefreshableKit/Pods-RefreshableKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE569154DCAB15AA9B037A64 /* Pods_RefreshableKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07B2B5C086778E3C6A508618 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F95C4F8C595D660768786764 /* Pods-RefreshableKit.debug.xcconfig */,
+				769870E693A72D84EBAD991F /* Pods-RefreshableKit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1FFF3C8EBD9875FB606A3710 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D500B9005841D65AC0B57A44 /* Pods_RefreshableKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4D6A8493209ABC42003C2150 = {
 			isa = PBXGroup;
 			children = (
 				4D6A849F209ABC42003C2150 /* RefreshableKit */,
 				4D6A849E209ABC42003C2150 /* Products */,
+				07B2B5C086778E3C6A508618 /* Pods */,
+				1FFF3C8EBD9875FB606A3710 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +137,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D6A84A5209ABC42003C2150 /* Build configuration list for PBXNativeTarget "RefreshableKit" */;
 			buildPhases = (
+				5B9CEBD53BE4B0636CF23661 /* [CP] Check Pods Manifest.lock */,
 				4D6A8498209ABC42003C2150 /* Sources */,
 				4D6A8499209ABC42003C2150 /* Frameworks */,
 				4D6A849A209ABC42003C2150 /* Headers */,
@@ -172,6 +197,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5B9CEBD53BE4B0636CF23661 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RefreshableKit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D6A8498209ABC42003C2150 /* Sources */ = {
@@ -247,6 +293,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -303,6 +350,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -311,6 +359,7 @@
 		};
 		4D6A84A6209ABC42003C2150 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F95C4F8C595D660768786764 /* Pods-RefreshableKit.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -330,13 +379,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		4D6A84A7209ABC42003C2150 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 769870E693A72D84EBAD991F /* Pods-RefreshableKit.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -355,7 +405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.toprating.RefreshableKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

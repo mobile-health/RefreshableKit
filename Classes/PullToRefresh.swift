@@ -83,7 +83,7 @@ open class ActivityIndicatorPullToRefreshView: UIView, PullToRefreshable {
         return DefaultPullToRefreshView()
     }
     
-    open let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    public let spinner = UIActivityIndicatorView(style: .gray)
     open var animationDuration = 0.5
     public var headerHeight = Constants.defaultHeaderHeight
     
