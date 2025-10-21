@@ -7,8 +7,11 @@
 //
 
 import Foundation
-import SWActivityIndicatorView
 import UIKit
+
+#if canImport(SWActivityIndicatorView)
+import SWActivityIndicatorView
+#endif
 
 enum InfinityScrollingState {
     case idle

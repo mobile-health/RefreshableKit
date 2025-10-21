@@ -6,8 +6,11 @@
 //  Copyright © 2018 toprating. All rights reserved.
 //
 
-import SWActivityIndicatorView
 import UIKit
+
+#if canImport(SWActivityIndicatorView)
+import SWActivityIndicatorView
+#endif
 
 public enum PullToRefreshState: Int {
     case idle = 0
