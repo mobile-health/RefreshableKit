@@ -10,9 +10,11 @@ import Foundation
 import UIKit
 
 public extension UIScrollView {
-    func addInfiniteScrolling(with refrehser: UIView & InfinityScrollable = DefaultRefreshFooter.footer(),
-                              container object: AnyObject,
-                              action: @escaping () -> ()) {
+    func addInfiniteScrolling(
+        with refrehser: UIView & InfinityScrollable = DefaultRefreshFooter.footer(),
+        container object: AnyObject,
+        action: @escaping () -> ()
+    ) {
         self.removeAllOldContainer()
         
         let containerSize = CGSize(width: frame.size.width, height: refrehser.footerHeight)

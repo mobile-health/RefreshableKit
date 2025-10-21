@@ -7,11 +7,14 @@
 //
 
 import Foundation
+import UIKit
 
 public extension UIScrollView {
-    func addPullToRefresh(with refresher: UIView & PullToRefreshable = DefaultPullToRefreshView.header(),
-                          container object: AnyObject,
-                          action: @escaping () -> ()) {
+    func addPullToRefresh(
+        with refresher: UIView & PullToRefreshable = DefaultPullToRefreshView.header(),
+        container object: AnyObject,
+        action: @escaping () -> ()
+    ) {
         removeAllOldContainer()
         
         // Create Header Container

@@ -8,8 +8,11 @@
 
 import Foundation
 import ObjectiveC
+import UIKit
 
-struct Constants {
+// MARK: - Constants
+
+enum Constants {
     static let keyPathOffSet = "contentOffset"
     static let keyPathPanState = "state"
     static let keyPathContentSize = "contentSize"
@@ -20,6 +23,8 @@ struct Constants {
     static let headerTag = 3121992
     static let footerTag = 3121993
 }
+
+// MARK: - AttachObject
 
 @objc class AttachObject: NSObject {
     init(closure: @escaping () -> ()) {
@@ -37,8 +42,8 @@ struct Constants {
 public extension UIScrollView {
     func invalidateRefreshControls() {
         let tags = [Constants.headerTag, Constants.footerTag]
-        tags.forEach { tag in
-            let oldContain = self.viewWithTag(tag)
+        for tag in tags {
+            let oldContain = viewWithTag(tag)
             oldContain?.removeFromSuperview()
         }
     }
@@ -55,7 +60,9 @@ public extension UIScrollView {
     }
 }
 
-struct AssociatedObject {
+// MARK: - AssociatedObject
+
+enum AssociatedObject {
     static var key: UInt8 = 0
 }
 
