@@ -13,14 +13,15 @@ let package = Package(
         )
     ],
     dependencies: [
-        // No external SwiftPM dependencies. The repo contains fallback
-        // implementations so the package can be used without pulling
-        // SWActivityIndicatorView via SPM.
+        // Use mobile-health fork that supports SPM
+    .package(url: "https://github.com/mobile-health/SWActivityIndicatorView.git", branch: "master")
     ],
     targets: [
         .target(
             name: "RefreshableKit",
-            dependencies: [],
+            dependencies: [
+                .product(name: "SWActivityIndicatorView", package: "SWActivityIndicatorView")
+            ],
             path: "Classes"
         )
     ]

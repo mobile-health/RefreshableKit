@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SWActivityIndicatorView",
+        "repositoryURL": "https://github.com/mobile-health/SWActivityIndicatorView.git",
+        "state": {
+          "branch": "master",
+          "revision": "aa29aee5ae2b37ef5c41491aeac8c33f5ec6640e",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
